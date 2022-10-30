@@ -13,18 +13,16 @@ services:
     restart: unless-stopped
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
-    network_mode: host
 
   
-  grafana:
-    image: grafana/grafana-oss:latest
-    container_name: grafana
+  service:
+    build: .
+    container_name: service
     ports:
-      - "3000:3000"
-    volumes:
-      - grafana-data:/var/lib/grafana
+      - "8001:8001"
+      - "8080:8080"
     restart: unless-stopped
-    network_mode: host
+
 
 volumes:
   prometheus-data:
